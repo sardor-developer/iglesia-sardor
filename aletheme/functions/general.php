@@ -179,10 +179,11 @@ function ale_page_links() {
 		'format' => '',
 		'total' => $wp_query->max_num_pages,
 		'current' => $current,
-		'show_all' => true,
+		'show_all' => false,
 		'type' => 'list',
 		'next_text' => 'Следующие посты',
-		'prev_text' => 'Предыдущие посты'
+		'prev_text' => 'Предыдущие посты',
+        'prev_next' => false
 		);
  
 	if( $wp_rewrite->using_permalinks() )
@@ -1187,14 +1188,24 @@ function ale_is_blog () {
 if ( function_exists('register_sidebar') ) {
 
         register_sidebar(array(
-            'name' => 'Main Sidebar',
-            'id' => 'main-sidebar',
-            'description' => 'Appears as the left sidebar on Blog pages',
-            'before_widget' => '<div id="%1$s" class="widget %2$s">',
-            'after_widget' => '</div>',
-            'before_title' => '<p class="caption">',
-            'after_title' => '</p><div class="line"></div>',
-        ));
+        'name' => 'Main Sidebar',
+        'id' => 'main-sidebar',
+        'description' => 'Appears as the left sidebar on Blog pages',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<p class="caption">',
+        'after_title' => '</p><div class="line"></div>',
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer Sidebar',
+        'id' => 'footer-sidebar',
+        'description' => 'Appears as the footer sidebar on pages',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h5 class="footer_widget_title">',
+        'after_title' => '</h5>',
+    ));
 
 }
 
